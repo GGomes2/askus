@@ -1,0 +1,25 @@
+{
+  "name": "askwell",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.18.0",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @askwell/web dev",
+    "typecheck": "pnpm -r typecheck && tsc --noEmit -p tsconfig.json",
+    "lint": "eslint . --max-warnings 0",
+    "test": "vitest run",
+    "build": "pnpm --filter @askwell/shared --filter @askwell/db --filter @askwell/widget build && pnpm --filter @askwell/web build"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "typescript": "6.0.3",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.4.6",
+    "vitest": "5.1.0",
+    "esbuild": "0.28.2"
+  }
+}

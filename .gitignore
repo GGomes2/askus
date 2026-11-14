@@ -14,3 +14,10 @@ coverage/
 # OS / editor
 .DS_Store
 *.log
+
+# Tool and local artifacts
+*.tsbuildinfo
+.vercel/
+.pnpm-store/
+playwright-report/
+test-results/
