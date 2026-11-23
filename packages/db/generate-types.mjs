@@ -1,9 +1,21 @@
 import { spawnSync } from "node:child_process";
 import { renameSync, rmSync, writeFileSync } from "node:fs";
 
-const projectRef = process.env.SUPABASE_DEV_PROJECT_REF;
+const projectRef = process.env.SUPABASE_DEV_PROJECT_REF?.trim()
+  || hostedProjectRef(process.env.NEXT_PUBLIC_SUPABASE_URL);
 if (!/^[a-z0-9]{20}$/.test(projectRef ?? "")) {
-  throw new Error("Set SUPABASE_DEV_PROJECT_REF to the Askwell dev project reference.");
+  throw new Error(
+    "Set NEXT_PUBLIC_SUPABASE_URL to the hosted Supabase dev URL or set SUPABASE_DEV_PROJECT_REF.",
+  );
+}
+
+function hostedProjectRef(value) {
+  const url = URL.parse(value ?? "");
+  if (!url || url.protocol !== "https:" || url.port || url.username || url.password
+    || url.pathname !== "/" || url.search || url.hash) {
+    return undefined;
+  }
+  return /^([a-z0-9]{20})\.supabase\.co$/.exec(url.hostname)?.[1];
 }
 
 const result = spawnSync(
