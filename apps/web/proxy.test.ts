@@ -1,4 +1,4 @@
-import { NextFetchEvent, NextRequest, NextResponse } from "next/server";
+import { type NextFetchEvent, NextRequest, NextResponse } from "next/server";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import proxy from "./proxy";
 
@@ -14,7 +14,7 @@ const redirectToSignIn = vi.fn(() => NextResponse.redirect(signInUrl));
 
 function request(path: string, method = "GET") {
   const req = new NextRequest(new URL(path, "https://askwell.example"), { method });
-  return proxy(req, new NextFetchEvent({ request: req, page: req.nextUrl.pathname, context: undefined }));
+  return proxy(req, {} as NextFetchEvent);
 }
 
 beforeEach(() => {
