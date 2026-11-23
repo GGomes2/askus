@@ -1,5 +1,4 @@
-import { APP_NAME } from "@askwell/shared";
-import { PLAN_LIMITS } from "../components/landing/plan-limits";
+import { APP_NAME, PLAN_LIMITS, WIDGET_POSITIONS } from "@askwell/shared";
 
 const steps = [
   ["Add your knowledge", "Upload a PDF or paste in your product information."],
@@ -7,17 +6,40 @@ const steps = [
   ["Answer visitor questions", "The chat answers using the information you added."],
 ];
 
+function planValues({ projects, messagesPerMonth, knowledgeSources, widget }: (typeof PLAN_LIMITS)["free"]) {
+  const positions = widget.positions.length === WIDGET_POSITIONS.length
+    ? "Any corner"
+    : widget.positions.map(position => position.replace("-", " ")).join(" / ");
+
+  return [
+    projects.toLocaleString("en-US"),
+    messagesPerMonth.toLocaleString("en-US"),
+    knowledgeSources.toLocaleString("en-US"),
+    widget.customButtonColor ? "Any" : "Default",
+    positions.charAt(0).toUpperCase() + positions.slice(1),
+    widget.customLabel ? "Custom" : "Default",
+    widget.animations.map((animation, index) => index === 0
+      ? animation.charAt(0).toUpperCase() + animation.slice(1)
+      : animation).join(" / "),
+    widget.customHeaderText ? "Custom" : "Default",
+    widget.canHideBadge ? "Hidden" : "Shown",
+  ] as const;
+}
+
 const comparison = [
-  ["Projects", PLAN_LIMITS.free.projects, PLAN_LIMITS.pro.projects],
-  ["Monthly messages per project", PLAN_LIMITS.free.messagesPerMonth, PLAN_LIMITS.pro.messagesPerMonth],
-  ["Knowledge sources per project", PLAN_LIMITS.free.knowledgeSources, PLAN_LIMITS.pro.knowledgeSources],
-  ["Button color", "Default", "Any"],
-  ["Button position", "Bottom right", "Any corner"],
-  ["Button label", "Default", "Custom"],
-  ["Open animation", "Fade", "Fade / slide / scale"],
-  ["Header text", "Default", "Custom"],
-  ["Powered by badge", "Shown", "Hidden"],
-];
+  "Projects",
+  "Monthly messages per project",
+  "Knowledge sources per project",
+  "Button color",
+  "Button position",
+  "Button label",
+  "Open animation",
+  "Header text",
+  "Powered by badge",
+] as const;
+
+const freeValues = planValues(PLAN_LIMITS.free);
+const proValues = planValues(PLAN_LIMITS.pro);
 
 const installSnippet = '<script src="…/widget.js" data-key="pk_…"></script>';
 
@@ -91,11 +113,11 @@ export default function Home() {
                 </tr>
               </thead>
               <tbody>
-                {comparison.map(([feature, free, pro]) => (
+                {comparison.map((feature, index) => (
                   <tr key={feature}>
                     <th scope="row">{feature}</th>
-                    <td>{free.toLocaleString("en-US")}</td>
-                    <td>{pro.toLocaleString("en-US")}</td>
+                    <td>{freeValues[index]}</td>
+                    <td>{proValues[index]}</td>
                   </tr>
                 ))}
               </tbody>
