@@ -2,3 +2,146 @@
 
 :root { color-scheme: dark; }
 body { margin: 0; background: #0a0a0a; color: #fafafa; font-family: Arial, Helvetica, sans-serif; }
+
+.landing {
+  --surface: rgb(255 255 255 / 5%);
+  --line: rgb(255 255 255 / 15%);
+  --muted: #bababa;
+  --radius: 1rem;
+  --blur: 16px;
+  --shadow: 0 24px 56px rgb(0 0 0 / 40%);
+  font-family: Geist, Arial, Helvetica, sans-serif;
+  background: radial-gradient(ellipse 50rem 32rem at 75% 10rem, #242424, transparent);
+  line-height: 1.5;
+}
+
+.landing-shell { width: min(1120px, calc(100% - 2.5rem)); margin-inline: auto; }
+.landing-nav, .landing-footer, .landing-nav nav, .landing-actions {
+  display: flex;
+  align-items: center;
+  gap: clamp(.75rem, 3vw, 2rem);
+}
+.landing-nav, .landing-footer { justify-content: space-between; min-height: 4.5rem; }
+.landing-nav { border-bottom: 1px solid var(--line); }
+.landing-nav nav, .landing-footer { font-size: .875rem; }
+.landing-brand { font-size: 1.3rem; font-weight: 750; letter-spacing: -.06em; }
+.landing a:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+.landing a:hover { text-decoration: underline; text-underline-offset: .25em; }
+
+.landing-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .65rem;
+  border: 1px solid transparent;
+  border-radius: .5rem;
+  padding: .65rem .9rem;
+  background: #fafafa;
+  color: #101010;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.landing-button-outline { background: var(--surface); border-color: var(--line); color: inherit; }
+
+.landing-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(2rem, 6vw, 5rem);
+  padding-block: clamp(3rem, 8vw, 7rem);
+}
+.landing-label, .landing-demo-caption {
+  color: var(--muted);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+.landing h1, .landing h2 { font-weight: 700; line-height: 1.02; letter-spacing: -.06em; }
+.landing h1 { margin-top: .75rem; font-size: clamp(2.75rem, 6.2vw, 5.25rem); }
+.landing h2 { font-size: clamp(2rem, 4vw, 3.25rem); }
+.landing-description { max-width: 38ch; margin-block: 1.25rem 1.75rem; color: var(--muted); font-size: 1.125rem; }
+.landing-actions { flex-wrap: wrap; }
+.landing-link { font-size: .925rem; }
+
+.landing-demo, .landing-steps li, .landing-table, .landing-install {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  backdrop-filter: blur(var(--blur));
+}
+.landing-demo { box-shadow: var(--shadow); }
+.landing-demo-caption { padding: .85rem 1rem; border-bottom: 1px solid var(--line); }
+.landing-demo-dots { margin-right: 1rem; color: #888; font-size: .45rem; vertical-align: middle; }
+.landing-demo-stage {
+  display: flex;
+  justify-content: flex-end;
+  padding: clamp(.75rem, 3vw, 2rem);
+  border-radius: 0 0 var(--radius) var(--radius);
+  background: radial-gradient(circle, #686868 1px, transparent 1px) 0 0 / 16px 16px;
+}
+.landing-chat {
+  width: min(100%, 19rem);
+  border: 1px solid var(--line);
+  border-radius: .8rem;
+  background: #191919;
+  box-shadow: var(--shadow);
+  font-size: .875rem;
+}
+.landing-chat-header { display: flex; align-items: center; gap: .65rem; padding: .9rem; border-bottom: 1px solid var(--line); }
+.landing-chat-icon { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: .55rem; background: #fafafa; color: #191919; }
+.landing-chat-header small { display: block; color: var(--muted); }
+.landing-chat-messages { display: grid; gap: .75rem; padding: 1rem .85rem; }
+.landing-chat-messages p { max-width: 91%; border-radius: .65rem; padding: .6rem .75rem; }
+.landing-chat-question { justify-self: end; background: #efefef; color: #191919; }
+.landing-chat-answer { background: #303030; }
+.landing-chat-footer { border-top: 1px solid var(--line); padding: .7rem; text-align: center; color: var(--muted); font-size: .75rem; }
+
+.landing-section { padding-block: clamp(2.75rem, 6vw, 5rem); border-top: 1px solid var(--line); }
+.landing-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1.5rem; list-style: none; }
+.landing-steps li { padding: clamp(1rem, 3vw, 1.75rem); }
+.landing-step-number { display: grid; place-items: center; width: 2rem; height: 2rem; border: 1px solid var(--line); border-radius: 50%; }
+.landing-steps h3 { margin-top: 1rem; font-size: 1.125rem; font-weight: 700; }
+.landing-steps p, .landing-install p { margin-top: .4rem; color: var(--muted); }
+
+.landing-table { margin-block: 1.5rem; }
+.landing-table table { width: 100%; border-collapse: separate; border-spacing: 0; table-layout: fixed; text-align: left; }
+.landing-table th, .landing-table td { padding: .85rem clamp(.55rem, 2.5vw, 1.5rem); overflow-wrap: anywhere; }
+.landing-table thead th:first-child { width: 46%; }
+.landing-table tbody th { font-weight: 500; }
+.landing-table tbody td { color: var(--muted); }
+.landing-table tbody tr > * { border-top: 1px solid var(--line); }
+
+.landing-install { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); align-items: center; gap: 1.5rem; padding: clamp(1rem, 4vw, 2.75rem); }
+.landing-install pre { border: 1px solid var(--line); border-radius: .65rem; background: #101010; padding: 1rem; white-space: pre-wrap; overflow-wrap: anywhere; font-size: .875rem; }
+.landing-footer { border-top: 1px solid var(--line); }
+
+@media (max-width: 760px) {
+  .landing-hero, .landing-install { grid-template-columns: minmax(0, 1fr); }
+  .landing-demo { width: min(100%, 34rem); }
+}
+
+@media (max-width: 540px) {
+  .landing-nav-secondary { display: none; }
+  .landing-steps { grid-template-columns: minmax(0, 1fr); }
+  .landing-table { font-size: .875rem; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .landing-hero-copy, .landing-demo { animation: landing-enter .55s ease-out both; }
+  .landing-demo { animation-delay: .1s; }
+
+  @supports (animation-timeline: view()) {
+    .landing-steps li, .landing-table, .landing-install {
+      animation: landing-enter ease-out both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 22%;
+    }
+  }
+}
+
+@keyframes landing-enter {
+  from { opacity: .55; transform: translateY(.65rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
