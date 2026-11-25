@@ -1,2 +1,1 @@
-// Database types and helpers will be added in Phase 1.
-export {};
+export type { Database, Json, Tables, TablesInsert, TablesUpdate } from "../types";

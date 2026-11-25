@@ -12,7 +12,8 @@
     "typecheck": "pnpm -r typecheck && tsc --noEmit -p tsconfig.json",
     "lint": "eslint . --max-warnings 0",
     "test": "vitest run",
-    "build": "pnpm --filter @askwell/shared --filter @askwell/db --filter @askwell/widget build && pnpm --filter @askwell/web build"
+    "build": "pnpm --filter @askwell/shared --filter @askwell/db --filter @askwell/widget build && pnpm --filter @askwell/web build",
+    "db:types": "node packages/db/generate-types.mjs"
   },
   "devDependencies": {
     "@types/node": "24.19.2",
