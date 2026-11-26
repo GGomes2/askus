@@ -246,7 +246,83 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      consume_message: {
+        Args: {
+          p_conversation_id?: string
+          p_message_limit: number
+          p_project_id: string
+        }
+        Returns: boolean
+      }
+      create_project: {
+        Args: { p_name: string; p_owner_id: string; p_project_limit: number }
+        Returns: {
+          created_at: string
+          id: string
+          messages_used: number
+          name: string
+          owner_id: string
+          period_start: string
+          public_key: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "projects"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      match_chunks: {
+        Args: { p_embedding: string; p_project_id: string }
+        Returns: {
+          content: string
+          id: string
+          similarity: number
+          source_id: string
+        }[]
+      }
+      owner_activity: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          conversations: number
+          knowledge_sources: number
+          messages_used: number
+          project_id: string
+        }[]
+      }
+      reserve_knowledge_source: {
+        Args: {
+          p_project_id: string
+          p_source_limit: number
+          p_title: string
+          p_type: string
+        }
+        Returns: {
+          created_at: string
+          id: string
+          project_id: string
+          status: string
+          storage_key: string | null
+          title: string
+          type: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "knowledge_sources"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      save_chat_turn: {
+        Args: {
+          p_conversation_id?: string
+          p_message: string
+          p_project_id: string
+          p_reply: string
+          p_visitor_id: string
+        }
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never
