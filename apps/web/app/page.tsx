@@ -1,4 +1,5 @@
 import { APP_NAME, PLAN_LIMITS, WIDGET_POSITIONS } from "@askwell/shared";
+import Link from "next/link";
 
 const steps = [
   ["Add your knowledge", "Upload a PDF or paste in your product information."],
@@ -51,7 +52,7 @@ export default function Home() {
         <nav aria-label="Main navigation">
           <a className="landing-nav-secondary" href="#how-it-works">How it works</a>
           <a href="#pricing">Pricing</a>
-          <a className="landing-button landing-button-outline" href="/sign-up">Start free</a>
+          <Link className="landing-button landing-button-outline" href="/sign-up">Start free</Link>
         </nav>
       </header>
 
@@ -62,7 +63,7 @@ export default function Home() {
             <h1 id="hero-title">Give visitors an answer when they ask.</h1>
             <p className="landing-description">Turn your product docs into an AI support widget that answers questions right on your website.</p>
             <div className="landing-actions">
-              <a className="landing-button" href="/sign-up">Start free <span aria-hidden="true">↗</span></a>
+              <Link className="landing-button" href="/sign-up">Start free <span aria-hidden="true">↗</span></Link>
               <a className="landing-link" href="#install">See how to install <span aria-hidden="true">↓</span></a>
             </div>
           </div>
@@ -123,7 +124,7 @@ export default function Home() {
               </tbody>
             </table>
           </div>
-          <a className="landing-button" href="/sign-up">Start free <span aria-hidden="true">↗</span></a>
+          <Link className="landing-button" href="/sign-up">Start free <span aria-hidden="true">↗</span></Link>
         </section>
 
         <section className="landing-shell landing-section" id="install" aria-labelledby="install-title">
