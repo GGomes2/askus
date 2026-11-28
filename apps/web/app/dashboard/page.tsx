@@ -1,8 +1,10 @@
 import { auth } from "@clerk/nextjs/server";
 import { DashboardShell } from "../../components/dashboard/shell";
+import { provisionAccount } from "../../lib/accounts/provision";
 
 export default async function Dashboard() {
-  await auth.protect();
+  const { userId } = await auth.protect();
+  await provisionAccount(userId);
 
   return (
     <DashboardShell>
